@@ -523,7 +523,7 @@ function render(R){
 
   card('rV','🎯 这个结论是怎么来的',T.nr.split('|').map(function(x){return '<p>'+x+'</p>';}).join(''));
 
-  var pos={YES:1,SML:1,WIN:1,AMB:1};
+  var pos={YES:1,WIN:1};  // 只有这两类的三条是「他做了但没说」的证据，其余是必须接受的现实
   var xH='<div class="cl">📋 '+(pos[T.k]?'三件他没说但做了的事':'三件你必须先接受的事')+'</div>';
   T.ex.forEach(function(e,i){
     xH+='<div class="ei"'+(i===T.ex.length-1?' style="border:none;padding-bottom:0"':'')+'>'+
