@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>他到底喜不喜欢你 · 文犬测试</title>
+<meta name="description" content="20道题，只看他的行为：主动、投入、占有欲、公开程度。答完直接给你一句准话。">
+<style>
+:root{
+  --bg:#eef2f8; --card:#ffffff; --tx:#1a2333; --mut:#8b95a8;
+  --a1:#6f9fd8; --a2:#24344f; --line:rgba(26,35,51,.12); --soft:#f6f9fc;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;-webkit-font-smoothing:antialiased}
+.w{max-width:560px;margin:0 auto;padding:0 16px 40px}
+.pg{display:none}.pg.on{display:block;animation:fi .4s ease}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.top{display:flex;align-items:center;gap:8px;padding:13px 0 11px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.top-n{font-size:14px;font-weight:800;letter-spacing:.02em}
+.top-t{font-size:10px;color:var(--mut);border:1px solid rgba(31,26,36,.2);border-radius:10px;padding:2px 7px;margin-left:auto;letter-spacing:.12em}
+.bp{border:none;border-radius:50px;padding:13px 30px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;box-shadow:0 10px 22px -8px rgba(36,52,79,.5);transition:transform .15s}
+.bp:hover{transform:translateY(-2px)}
+.bs{border:1.5px solid rgba(31,26,36,.2);border-radius:50px;padding:12px 22px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;background:var(--card);color:#3d4a66;transition:transform .15s}
+.bs:hover{transform:translateY(-2px)}
+.ic{text-align:center;padding:10px 0 26px}
+.mug{width:150px;margin:0 auto 16px;display:block;animation:fl 3.4s ease-in-out infinite}
+h1{font-size:clamp(23px,5.6vw,34px);font-weight:900;line-height:1.22;margin-bottom:12px;letter-spacing:-.01em}
+.hl{background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sub{font-size:14px;color:#6b6274;margin-bottom:20px;line-height:1.6}
+.pills{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
+.pill{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:5px 10px;font-size:12.5px;color:#6b6274;white-space:nowrap}
+.note{font-size:12px;color:var(--mut);margin-top:16px;line-height:1.7}
+footer{text-align:center;font-size:11px;color:var(--mut);margin-top:26px;line-height:1.8}
+.prog{position:sticky;top:6px;z-index:10;background:rgba(244,240,242,.93);backdrop-filter:blur(8px);border-radius:50px;padding:8px 14px;display:flex;align-items:center;gap:10px;margin-bottom:13px;border:1px solid var(--line)}
+.prog-t{flex:1;height:6px;background:rgba(31,26,36,.14);border-radius:3px;overflow:hidden}
+.prog-f{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--a1),var(--a2));transition:width .4s ease;width:0}
+.hint{background:var(--soft);border-radius:12px;border:1px solid var(--line);padding:9px 13px;margin-bottom:13px;font-size:13px;color:#6b6274;line-height:1.6}
+.qcard{background:var(--card);border-radius:16px;padding:22px 20px;margin-bottom:12px;border:1px solid var(--line);box-shadow:0 4px 14px -8px rgba(31,26,36,.18)}
+.qnum{font-size:11px;letter-spacing:.12em;color:var(--mut);margin-bottom:9px;font-weight:700}
+.qtext{font-size:clamp(16px,2.6vw,19px);font-weight:800;line-height:1.55;margin-bottom:18px}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--soft);border-radius:12px;padding:13px 15px;font-size:14.5px;line-height:1.55;cursor:pointer;font-family:inherit;color:var(--tx);transition:all .15s}
+.opt:hover{border-color:rgba(111,159,216,.55);background:#fff}
+.opt.sel{border-color:var(--a1);background:#eef5fd;box-shadow:0 0 0 3px rgba(111,159,216,.15)}
+.ol{flex:none;width:23px;height:23px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--mut);margin-top:1px}
+.opt.sel .ol{background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;border-color:transparent}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center}
+.nav .bp{flex:1}
+button:disabled{cursor:not-allowed}
+.rh{background:linear-gradient(140deg,#24344f,#141f36);color:#fff;border-radius:18px;padding:24px 22px 22px;text-align:center;margin-bottom:13px}
+.rf{font-size:30px;line-height:1;margin:0 auto 12px;width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center}
+.rn{font-size:11px;letter-spacing:.4em;opacity:.55;margin-bottom:10px;text-indent:.4em}
+.vbig{font-size:clamp(27px,7.2vw,38px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin-bottom:11px}
+.vtype{display:inline-block;font-size:11.5px;letter-spacing:.08em;border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:4px 13px;margin-bottom:12px;opacity:.8}
+.rvs{font-size:13.5px;line-height:1.72;opacity:.82}
+.rfit{margin-top:17px;padding-top:15px;border-top:1px solid rgba(255,255,255,.16)}
+.rfitn{font-size:38px;font-weight:900;line-height:1;background:linear-gradient(135deg,#b9d4f2,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rfitl{font-size:11px;letter-spacing:.18em;opacity:.6;margin-top:6px}
+.rwin{margin-top:13px;font-size:13px;line-height:1.65;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-left:3px solid #8ab6e8;border-radius:10px;padding:10px 12px;text-align:left}
+.rvd{margin-top:10px;font-size:13.5px;line-height:1.65;background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;text-align:left}
+.card{background:var(--card);border-radius:16px;padding:20px 18px;margin-bottom:12px;border:1px solid var(--line);box-shadow:0 4px 14px -8px rgba(31,26,36,.16)}
+.cl{font-size:15px;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ct{font-size:14.5px;line-height:1.85;color:#413a4a}
+.ct p+p{margin-top:10px}
+.bdg{font-size:11px;font-weight:800;background:#fdf2f4;color:var(--a1);border-radius:20px;padding:3px 10px;letter-spacing:.02em}
+.ei{padding:14px 0;border-bottom:1px dashed var(--line)}
+.ei:first-of-type{padding-top:2px}
+.ew{font-size:16px;font-weight:800;margin-bottom:4px}
+.em{font-size:13px;color:var(--a1);font-weight:700;margin-bottom:6px}
+.ey{font-size:13.5px;line-height:1.75;color:#514859}
+.bi{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.bn{font-size:13px;width:64px;flex:none;color:#514859;font-weight:700}
+.bk{flex:1;height:8px;background:var(--soft);border-radius:4px;overflow:hidden;border:1px solid var(--line)}
+.bf,.bg{height:100%;border-radius:4px;width:0;transition:width .9s cubic-bezier(.22,1,.36,1)}
+.bf{background:linear-gradient(90deg,var(--a1),var(--a2))}
+.bg{background:linear-gradient(90deg,#cfc4cd,#9a8fa0)}
+.bv{font-size:12px;width:28px;text-align:right;color:var(--mut);font-weight:700}
+.ti{display:flex;gap:11px;margin-bottom:13px;align-items:flex-start}
+.ti:last-child{margin-bottom:0}
+.tn{flex:none;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.ti div:last-child{font-size:14px;line-height:1.75;color:#413a4a}
+.warn{background:#f0f6fe;border:1px solid rgba(111,159,216,.35);border-radius:14px;padding:16px 17px;margin-bottom:12px}
+.warn .cl{color:#3d6da8}
+.warn .ct{color:#2f5477}
+.share{background:linear-gradient(140deg,#eef5fd,#fff);border:1.5px dashed rgba(111,159,216,.4);border-radius:16px;padding:18px;text-align:center;margin-top:4px}
+.share-t{font-size:15px;font-weight:800;color:#3d6da8;margin-bottom:7px}
+.share-m{font-size:13px;line-height:1.75;color:#6b6274}
+</style>
+</head>
+<body>
+
+<div id="p0" class="pg on"><div class="w">
+  <div class="top">
+    <svg width="26" height="26" viewBox="0 0 36 36" fill="none"><rect x="6" y="4" width="24" height="28" rx="3" fill="#fff" stroke="#1f1a24" stroke-width="2"/><path d="M11 4v28" stroke="#1f1a24" stroke-width="2"/><path d="M16 11h8M16 16h8M16 21h6" stroke="#3a2f45" stroke-width="1.8" stroke-linecap="round"/><path d="M27 8l3 3-3 3" stroke="#c8737f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="top-n">文犬测试</span><span class="top-t">原创自测</span>
+  </div>
+  <div class="ic">
+    <svg class="mug" viewBox="0 0 200 132">
+      <path d="M18 66 C 60 20, 140 20, 182 66 C 140 112, 60 112, 18 66 Z" fill="none" stroke="#24344f" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M100 81 C 84 69, 86 50, 100 57 C 114 50, 116 69, 100 81 Z" fill="#6f9fd8"/>
+      <circle cx="107" cy="60" r="2.6" fill="#eef2f8" opacity=".7"/>
+    </svg>
+    <h1>他到底<br><span class="hl">喜欢</span>你吗？</h1>
+    <p class="sub">不猜他的朋友圈，不问闺蜜。<br>20 道题只看他的行为——然后给你一句准话。</p>
+    <div class="pills"><span class="pill">📝 20题</span><span class="pill">⏱ 5分钟</span><span class="pill">🫀 9种结论</span><span class="pill">🔬 十维分析</span></div>
+    <button class="bp" style="padding:14px 40px" onclick="startQ()">开始测试 →</button>
+    <p class="note">凭真实情况选，别选「希望他是什么样」的答案。<br>你选的每一题，答案在他那边早就有了。</p>
+  </div>
+  <footer>© 文犬测试 ｜ 原创测试，未经授权禁止转载</footer>
+</div></div>
+
+<div id="p1" class="pg"><div class="w">
+  <div class="top">
+    <svg width="26" height="26" viewBox="0 0 36 36" fill="none"><rect x="6" y="4" width="24" height="28" rx="3" fill="#fff" stroke="#1f1a24" stroke-width="2"/><path d="M11 4v28" stroke="#1f1a24" stroke-width="2"/><path d="M16 11h8M16 16h8M16 21h6" stroke="#3a2f45" stroke-width="1.8" stroke-linecap="round"/><path d="M27 8l3 3-3 3" stroke="#c8737f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="top-n">文犬测试</span><span class="top-t">原创自测</span>
+  </div>
+  <div class="prog"><div class="prog-t"><div class="prog-f" id="pf"></div></div><div style="font-size:13px;color:#8f8794;white-space:nowrap"><span id="pnum">1</span>/<span id="ptot">20</span></div></div>
+  <div class="hint" id="hint"></div>
+  <div class="qcard"><div class="qnum" id="qnum"></div><div class="qtext" id="qtext"></div><div class="opts" id="opts"></div></div>
+  <div class="nav"><button class="bs" id="bP" onclick="prevQ()">←</button><button class="bp" id="bN" onclick="nextQ()">下一页 →</button></div>
+  <footer>© 文犬测试 ｜ 原创测试，未经授权禁止转载</footer>
+</div></div>
+
+<div id="p2" class="pg"><div class="w">
+  <div class="top">
+    <svg width="26" height="26" viewBox="0 0 36 36" fill="none"><rect x="6" y="4" width="24" height="28" rx="3" fill="#fff" stroke="#1f1a24" stroke-width="2"/><path d="M11 4v28" stroke="#1f1a24" stroke-width="2"/><path d="M16 11h8M16 16h8M16 21h6" stroke="#3a2f45" stroke-width="1.8" stroke-linecap="round"/><path d="M27 8l3 3-3 3" stroke="#c8737f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="top-n">文犬测试</span><span class="top-t">原创自测</span>
+  </div>
+  <div id="rH" class="rh"></div>
+  <div id="rV" class="card"></div>
+  <div id="rX" class="card"></div>
+  <div id="rR" class="warn"></div>
+  <div id="rD" class="card"></div>
+  <div id="rM" class="card"></div>
+  <div id="rO" class="card"></div>
+  <div id="rA" class="card"></div>
+  <div class="share">
+    <div class="share-t">📸 觉得准的话，截个图发出去</div>
+    <div class="share-m">带上你那句结论发笔记，@文犬测试，看看朋友们测出来是什么。<br>被说中的那个人，通常一句话都不用多讲。</div>
+  </div>
+  <div style="margin-top:10px;display:flex;gap:10px">
+    <button class="bs" style="flex:1" onclick="copyResult()">复制结论</button>
+    <button class="bs" style="flex:1" onclick="restart()">重新测一次</button>
+  </div>
+  <footer>© 文犬测试 ｜ 原创测试，未经授权禁止转载<br>结果为娱乐性自评，不构成心理或情感建议</footer>
+</div></div>
+
+<script>
+/* ============================================================
+   【主题配置区】换主题只改这一段，下面的逻辑不用动
+   ============================================================ */
+var CFG = {
+  brand: '文犬测试',
+  LOCK: false,
+  LOCK_TITLE: '完整报告还没解锁',
+  LOCK_DESC: '',
+  PAY_LINK: '',
+  PRICE: ''
+};
+
+// 十个维度：分数越高 = 越指向「他喜欢你」
+var DK = ['ATT','RSP','PRI','CUR','FTR','JEL','EMO','AMB','EFF','SNS'];
+var DN = ['主动程度','回应质量','时间投入','好奇心','未来语言','占有倾向','情绪投入','模糊信号','投入成本','公开程度'];
+
+// 计分标定：各维度在普通作答下的均值与标准差
+var MEAN = [2.72,1.99,0.59,2.49,-0.14,0.30,6.57,7.18,2.70,-0.27];
+var SD   = [6.42,2.57,4.57,2.84,3.38,3.45,7.18,4.37,2.76,2.65];
+var D0 = 3.98;
+var PEN = {YES:-1.11,SML:-0.57,WIN:-0.35,AMB:-0.55,FRD:0.09,BKP:-0.51,LST:-0.35,OUT:0.70,PAS:2.65};
+
+// 三条辅助轴
+var MOTlb={cls:'同学同事型',frd:'朋友局型',net:'网友型',amb:'暧昧进行型'};
+var MOTtx={
+cls:'你们是在一个不得不常见面的环境里认识的。这种关系有天然优势：他有足够多的机会观察你、了解你。也有一个天然的坑——你会把「天天见」误读成「他在意」。判断标准只有一条：他愿不愿意为这段关系额外付出，而不是只消费见面本身。',
+frd:'你们是朋友局认识的。这种关系最难判断，因为所有人都默认「朋友」这个壳。他可以借着朋友的身份做所有暧昧的事，进可攻退可守。所以这里能看的只有一个东西：他对你的好，有没有超过对其他朋友的那一档。',
+net:'你们是网上认识的。线上关系的特点是成本极低：说一句想你不需要任何付出。所以网上的甜言蜜语在判断里权重很低，真正作数的只有一条——他愿不愿意让这段关系落到线下、落到具体、落到现实里。',
+amb:'你们已经暧昧了一段时间。这个阶段最贵的不是感觉，是时间。暧昧超过三个月还停在这里，通常不是慢热，是有人不想负责推进。关系卡住的唯一解释：推进的成本比维持高，而维持的收益他已经拿到了。'};
+var PRSlb={raw:'还没敢动',try:'试探过',mid:'正在暧昧',sig:'收到过信号'};
+var PRStx={
+raw:'你还没敢动，只是在自己心里过了一百遍。这个状态最大的问题是信息量太少：你看到的都是素材，不是回应。你现在需要的不是更用力地猜，是制造一次能产生信息的机会——哪怕很小。',
+try:'你试探过，然后被绕开了或者没得到明确回应。被绕开本身就是一种回应，但人不愿意接受这个答案，就会把「他没拒绝」当成希望。没拒绝和没接受之间，隔着一整个他想不想。',
+mid:'你们正在暧昧里。暧昧这个状态最舒服也最危险：舒服是因为所有好处都能先领，危险是因为它没有截止日期。你需要一个能区分「他在靠近」还是「他在停留」的标准——这个测试给你的是这个。',
+sig:'他给过你信号，至少你认为是信号。信号这件事最麻烦的地方在于：发出的人可以不认账。所以单独看信号没有意义，要看信号出现之后他有没有跟上动作。有信号没动作的，信号不算数。'};
+var TPOlb={act:'他不主动',hot:'他忽冷忽热',talk:'聊得来但不约',back:'说过喜欢又收回'};
+var TPOtx={
+act:'你最搞不懂的是他的不主动。这里有个值得记住的判断：不主动只有一个解释，就是这件事在他的优先级里不在前面。人会为想做的事找到时间，也会为不想做的事找到理由。这两件事没有人是例外。',
+hot:'你最搞不懂的是忽冷忽热。忽冷忽热不是情绪不稳，是供给关系：他热的时候通常是他空的时候，他冷的时候是有人陪他的时候。这不是性格，是调度。把自己当成他的选项之一，还是退出这个调度系统，是你要选的。',
+talk:'你们聊得来，但他从来不约。聊天是所有关系里成本最低的投入——它只需要一根手指和一点无聊的时间。约会不一样，它要暴露、要花钱、要占用整块时间、要承担尴尬的风险。一个人只肯停在聊天，说明他只肯付最便宜的那部分。',
+back:'他说过喜欢，然后又收回或绕开了。这种情况最伤人，因为它给了你一个可以反复回放的证据。但要看清楚：说出口又绕开的，不是不敢，是不想承担说完之后的代价。真正不敢的人，连第一次都不会说。'};
+
+// 九种结果类型
+var TYPES = [
+{k:'YES',n:'藏不住型',f:'💌',fr:[72,95],
+vc:'喜欢你。',
+vs:'不是有点喜欢，是那种会为了多看你一眼、专门绕一段路走的喜欢。',
+vd:'十个维度，他过了八个。这种信号组合，装不出来。',
+win:'动作窗口 · 这周之内，主动约他一次单独的局，看他答应得多快',
+nr:'先说结论的依据：他的主动、时间投入、投入成本三条都过线了。主动是十项里最难伪装的一项——人可以对谁都礼貌，但不会对谁都上心。|他为你花的不止是时间，还有「计划」：提前几天定好、记得你说过的小事、在你情绪不对之前就发现。这些属于 Aron 说的自我扩展行为——一个人把你纳入自己的世界时，会不自觉地开始重新安排自己的生活。这个动作装不了。|还有一条最硬的：他的朋友知道你。愿意让你出现在他的社交关系里，等于把你从「私人情绪」升级成「公开事实」。这是所有信号里含金量最高的一条。',
+ex:[['他会先于你的暗示行动','你还没提，他已经安排好了','判断一个人上不上心，别看他答应你什么，看他主动做什么。答应是被动的，安排是主动的。他现在处在「安排」这一档。'],['他害怕失去你，虽然没说过','所以在重要的事上格外小心','注意他对你的态度和对别人的落差：越明显，越说明他在意。人对无所谓的对象才会一视同仁地随意。'],['这事唯一的变数是你的沉默','喜欢不会自动等','他现在所有的信号都停在「等你回应」这一步。这种状态维持太久会变成习惯，而不是感情。窗口是有的，但它有保质期。']],
+rk:'因为太确定反而按兵不动，等他把热情收回去的那天，又回头怀疑是不是自己判断错了。',
+ac:['这周内约他一次单独的局，时间地点你定。不是暗示，是明确的邀约。看他的回复速度和当天的状态——这两样会补完剩下的判断。','找机会在一个自然场合认识他的朋友。他的介绍方式——「这是我朋友」还是直接叫你的名字——会告诉你他的定位。','别再逐条分析他的消息了。你现在的信息已经够做决定，继续分析只会制造新的怀疑。'],
+v:[1.884,1.326,1.398,1.536,1.165,0.912,1.345,0.758,1.768,1.197]},
+
+{k:'SML',n:'有一点型',f:'🫧',fr:[52,72],
+vc:'他有一点喜欢你。',
+vs:'但「一点」的意思是：还不足以让他为你改变任何一个计划。',
+vd:'信号是有的，但都停在最省事的那一步。',
+win:'动作窗口 · 连续两周不主动，然后看这段关系由谁维持',
+nr:'他的信号是真实的——回应认真、偶尔主动、会聊到以后。但它们有一个共同点：全部停在零成本的那一档。|判断喜欢程度，看的不是有没有信号，而是信号愿不愿意变贵。聊天是免费的，记得你说的话是便宜的，单独赴约是中等成本的，为你改动原定计划是贵的，把你介绍给朋友是最贵的。他现在停在中档以下。|这不是「不喜欢」，是「不够」。不够的意思是：他享受现在这样，但没有想为它付更多。这种状态可以持续很久——只要你继续供应那些免费的部分。',
+ex:[['他喜欢的是和你聊天的感觉','不是非你不可','换一个人陪他聊，他大概率也是这个状态。所以这个「喜欢」指向的是功能，不是你这个具体的人。这是它和真喜欢最核心的区别。'],['你的可替代性比你想象的高','这是「一点」最扎心的部分','他没有在收集关于你的信息，也没有把你安排进任何计划。喜欢一个人会让人想了解更多——这个动作他还没做。'],['别用暧昧期长短来判断','时间不会把一点变成很多','关系里唯一会随时间增加的是投入，不是感情。他不追加投入，这件事就不会往前走。']],
+rk:'把「他有一点喜欢」读成「他快喜欢了」，然后无限期地等，等成了他生活里的固定背景。',
+ac:['做一次两周的「不主动」测试：他不找你，你也不找。这不是博弈，是收集信息——看这段关系的维持成本到底落在谁身上。','两周之后只看一个数字：他主动找你的次数。零到一次，这个结论就闭环了；三次以上，回来重测一次。','给「等他动心」设一个预算上限，比如再给三个月。到期没变化就撤，别让「一点」用掉你一整年。'],
+v:[0.102,0.884,-0.07,0.894,0.089,0.142,0.8,0.529,-0.111,0.213]},
+
+{k:'WIN',n:'不敢开口型',f:'🙈',fr:[58,78],
+vc:'他喜欢你，但他不敢。',
+vs:'不是不想靠近，是怕说出口之后，连现在这样都没有了。',
+vd:'情绪投入和占有欲很高，主动和公开几乎为零——典型的「怕搞砸」。',
+win:'动作窗口 · 给他一次明确的、不会被误解的信号，然后只等一次',
+nr:'你有没有注意到一个反差：他聊得很深、会在意你提别的男生、会突然冷下来——但从不推进、从不公开。|这个组合在心理学里有个名字：拒绝敏感（Downey & Feldman, 1996）。高度害怕被拒绝的人会用「留在安全区」的方式维持关系——朋友的位置不会被拒绝，所以宁可一直待在那里。他们不是没有感情，是把感情压在了一层壳下面。|判断他是「不敢」还是「不想」，看一个细节：他敢不敢在小事上占你的便宜。敢毒舌、敢使唤你、敢提小要求的人，不是怕你的人。怕你的人连这个都会收着。',
+ex:[['他所有的热都绕着走','不直接，但你能感觉到','他不会说想你，但会找一个借口找你；不会问你在干嘛，但会点赞你三小时前的朋友圈。这些动作翻译过来是同一句话。'],['他冷的那几次，恰恰是最在意的时候','冷淡是他的保护','怕被拒绝的人在你靠近时会突然退，不是不想要，是怕确认。这个退和你做错了什么没有关系。'],['这层壳需要你来敲，但只能敲一次','敲两次就变成压力了','给他一次明确到没法误解的信号——一个单独的邀约、一句直接的话。他接了，这事就成了；他绕开，那就是他选的。']],
+rk:'两个人都在等对方先动，等到某一方先累了，然后各自带着遗憾退场。',
+ac:['发一个不会被误解的邀约：具体的日期、具体的事、只有你们两个人。措辞别留退路——他需要的是明确的台阶，不是又一次模糊。','给完信号就正常相处，不追问、不解释。让他自己消化，这是他能承受的最大剂量。','如果他这次还是绕开了，把这当成答案而不是时机问题。勇气不足有时候不是时机，是意愿。'],
+v:[0.621,0.884,0.53,1.18,0.224,0.719,1.267,-0.386,0.415,-0.443]},
+
+{k:'AMB',n:'等你先动型',f:'⚖️',fr:[45,62],
+vc:'他在等你先动。',
+vs:'他给的信号都是双向的——你退一步他就退，你进一步他才进。',
+vd:'不是不喜欢，是不肯承担「先喜欢」的风险。',
+win:'动作窗口 · 十四天内推一次明确邀约，看他的反应级别',
+nr:'他所有的好都带着一个条件：需要你先给一半。你找他他认真接，你不找他他不出现；你热一点他热一点，你冷下来他也安静。|这在关系里叫对称回应。它维持了平衡，但也暴露了一件事：他不打算承担任何不对称的风险。喜欢你的人一定会出现「不划算」的行为——单方面的主动、不合时宜的关心、明知你不在状态还发的消息。他没有这些。|但注意，这和「不喜欢」不一样。不喜欢的人不会维持对称，会直接衰减。他维持着、回得认真，说明这段关系对他有价值——只是他把它定义成「可以但不必」。',
+ex:[['他不是怕拒绝，是在等确定的赢面','两者的区别很重要','怕拒绝的人会紧张、会绕、会冷热交替；等赢面的人只是不动。他不焦虑，他只是不出牌。这更成熟，也更冷。'],['你现在的所有付出都在打折','因为他知道你会再来','对称关系的隐藏代价：你永远是发起方。时间长了，这段关系在你心里的重量会远大于在他心里的——而你们都以为它是对等的。'],['推进一次，看他的级别','把球踢过去，看回传的力度','提一个明确的邀约。他答应并主动安排细节是一档；只答应但不安排是另一档；说「看情况」是第三档。三档对应三个完全不同的答案。']],
+rk:'把他的「有回应」当成「在靠近」，用一年时间换一个「他其实只是客气」。',
+ac:['十四天内推一次明确的邀约，然后严格记录他的反应级别：是接住并补充细节，还是只接住，还是绕开。这三个结果分别对应三种完全不同的关系。','如果他只是接住但不补充，降一档处理：把这段关系归入「可维持但不投入」，别再单方面加码。','别再分析他的每条消息用词。对称关系里没有隐藏信号，他所有的意思都在表面。'],
+v:[-0.195,0.664,0.931,0.823,0.358,0.334,0.567,0.758,0.641,-0.181]},
+
+{k:'FRD',n:'有人在就好型',f:'🛋️',fr:[30,46],
+vc:'他喜欢的是有人在。',
+vs:'换一个人陪他聊天，他也是这个样子。',
+vd:'回应可以，投入没有。他对你的依赖是时间性的，不是指向你的。',
+win:'动作窗口 · 停止供应情绪价值两周，看这段关系还剩什么',
+nr:'区分两种「喜欢」：一种指向具体的人，一种指向功能。你的情况大概率是后者——他需要的是晚上有人听他说话、无聊有人接茬、情绪低落有人托底。至于这个人是谁，没那么重要。|这个判断有一个很硬的检验：他找你的时间点。如果他只在深夜、只在周末没人约、只在情绪不好的时候出现，而在生活充实的时段彻底消失——那你在他的系统里是补位，不是人选。|这种关系最麻烦的地方是它看起来很热：聊得深、说得真、好像比情侣还亲密。但那是深夜的亲密，不是选择的亲密。前者只需要孤独，后者需要决定。',
+ex:[['他对你的需要是分时段的','这一点你现在应该能对上','回忆他出现的时间规律。规律越明显——只在特定时段——补位的概率越高。人对自己真正在意的人，是没有时段概念的。'],['你提供的是情绪价值，不是你这个人','所以它不可持续','情绪价值是消耗品。你能一直供应，关系就一直维持；你断供，它不会难过，只会换一个供应商。这不是因为他是坏人，是因为他从头到尾没把你当成具体的人。'],['这种关系结束的方式很安静','没有争吵，只是淡掉','补位关系的特征是：它不需要解决任何问题就能消失。哪天他的生活满了，你连一个正式的告别都得不到。']],
+rk:'持续供应情绪价值，把自己当成他的深夜树洞，等他哪天有了正式的对象，一夜退回陌生人。',
+ac:['停止供应两周。他找你，回，但把长度和深度都减半。这是测试，不是惩罚——两周之后看谁先不适应。','把和他聊天的时间拿去约别人。不是为了气他，是让你自己记住：你供应出去的那些东西，给别人也一样值钱。','如果他真的在意，两周的降温会让他主动来问发生了什么。没有这一句，结论就闭合了。'],
+v:[-0.566,0.369,-0.204,-0.033,-0.785,-0.307,0.8,0.834,-0.186,-0.181]},
+
+{k:'BKP',n:'退路型',f:'🔀',fr:[22,38],
+vc:'你是他的退路。',
+vs:'他热的时候是没人陪，冷的时候是有人陪了。',
+vd:'忽冷忽热 + 从不公开 + 未来语言为零，这个组合只有一个解释。',
+win:'动作窗口 · 他下次冷的时候，别接。就一次。',
+nr:'你的作答里有一个非常典型的组合：模糊信号很高、公开程度很低、未来语言为零。翻译过来——他给你的东西全部停留在私下，没有任何一件进入现实。|行为心理学里最经典的机制之一是间歇性强化（Skinner）：不确定的、偶尔的奖赏比稳定的奖赏更让人上瘾。他的忽冷忽热就是这个机制在起作用——你被冷落之后的那一点热，会被你的大脑放大成希望，然后你开始主动追这种热。这不是你意志薄弱，是神经机制本来就这么运作。|所以这个局最难破的点不在他，在你：你已经被训练成了会主动靠近的人。破局的方法也只有一个——切断强化。',
+ex:[['他热的时段，能精确对应他空的时段','这不是巧合，是排班','把他找你的时间记录两周，和他的社交节奏对一下。你会看到一个清晰的相关性。看到这个规律的那天，谜就解了。'],['他从不公开你，因为从没打算兑现','「低调」是借口，「无承诺」是事实','不介绍给朋友、不在任何场合承认、聊到未来就绕——这三个动作加在一起，指向的不是慢热，是留后门。'],['他每次冷完又热，都在验证这条路有效','所以这个循环会一直转','只要你还在原地，他就会周期性回来。这不是想念，是巡航。你不接一次，他才会重新计算你的位置。']],
+rk:'在他第无数次回来的时候心软，然后又用三个月等一个不会来的承诺。',
+ac:['他下次冷的时候，别接。不质问、不冷战、不解释，就是不接。一次就够——你的反应模式改变，他的行为模式才会跟着变。','把「他在乎我」的证据重新列一遍，标准只有一条：有没有现实动作。私下的甜、深夜的话、暧昧的暗示都不算。','给自己定一个明确的退出日期，写在日历上。间歇性强化的唯一解法是彻底断供，没有「适度接触」这个选项。'],
+v:[1.215,0.075,-0.004,0.68,0.425,-0.115,0.411,1.292,0.641,-0.64]},
+
+{k:'LST',n:'没想清楚型',f:'🌫️',fr:[40,58],
+vc:'他自己也没想清楚。',
+vs:'不是在吊着你，是他真的还没想好要不要开始。',
+vd:'各项都停在中间，没有一项够决绝——包括离开你这一项。',
+win:'动作窗口 · 别逼他回答，把选择题换成一次具体的邀约',
+nr:'他的所有维度都落在中间：有回应但不主动，有好奇但不深入，聊未来会绕但不是完全回避。这个形状只有一个解释——他自己也在这件事的外面看。|认知失调理论（Festinger, 1957）里有个结论：人在两个选项之间悬而不决时，会同时持有两边的行为。他对你做的好事和退缩，都是这个未决状态的产物，并不矛盾。|这种状态和吊着你最大的区别在于：吊着你的人有明确的目的——维持收益；没想清楚的人自己也是受害者——他知道自己在耽误你，但下不了决心。前者的信号是「恰到好处的热」，后者是「不成体系的乱」。',
+ex:[['他不是在演戏，是真的乱','所以你读不出规律','吊着你的人有策略：该热的时候热，该冷的时候冷。没想清楚的人没有策略，行为是随机的。你现在感受到的「读不懂」，本身就是答案。'],['这个状态不会自己解决','它只会拖到你先做决定','悬置关系有一个残酷的默认值：时间越久，开始的成本越高。他不决定，等于在用拖延投票——投给「不开始」。'],['把「你怎么想的」换成一个具体的问题','选择题他答不了，具体的事他能答','「这周六陪我去看展」比「你怎么想的」更容易得到一个真实的回应。用具体的事推进，让他用行动投票。']],
+rk:'一直等他想清楚，等到他遇到一个不需要他想清楚的人，然后你出局。',
+ac:['别再问「你怎么想的」，这种问题只会把他推回防御。换成具体的小邀约，一次一件，让他用行动投票。','给自己设一个观察期，比如六周。期间只看一个指标：他有没有任何一次主动安排。没有，就把这个「没想清楚」当成答案。','保住自己的情绪预算。等待可以，但前提是你在同时往前走，而不是原地陪着悬置。'],
+v:[0.473,0.222,0.53,0.466,-0.314,0.591,0.489,0.3,0.415,-0.115]},
+
+{k:'OUT',n:'纯朋友型',f:'🤝',fr:[12,28],
+vc:'他没那个意思。',
+vs:'他对你好，是因为他对朋友都这样。这跟你没关系。',
+vd:'回应和好奇都在，但占有欲、成本投入、未来语言全部为零。',
+win:'动作窗口 · 直接问一句「你现在有喜欢的人吗」，听他怎么答',
+nr:'先说一个不太好受的事实：你对他最准确的判断，可能来自他朋友而不是他自己。他对你的好如果和朋友收到的是同一档，那这就是他的默认社交模式，不是信号。|这里的关键是区分「他喜欢和你相处」和「他想和你在一起」。前者只需要你有趣、安全、好聊；后者需要他愿意为你付出排他性的成本——时间上的排他、精力上的排他、以及最重要的：关系上的排他。你这边三项都是零。|还有一个容易误读的点：他记得你的事、他关心你的情绪。这些在你看来是特别的，但请去对照他对别人是不是也这样。人在这种判断里普遍有一个盲区——我们会把自己收到的善意，自动翻译成针对自己的偏爱。',
+ex:[['他对你的好，是档位不是信号','去核对一下他朋友收到的那一档','最简单的检验：观察他对别的女生的态度。如果高度相似，你就有了答案。如果明显不同且方向是更疏远，才需要重新判断。'],['他不是在装傻，是真没往那想','所以你所有的暗示都漏掉了','无意的人收到暗示，就像没收到一样。这不是他迟钝，是那些话在他那里本来就不构成信息。这比装傻要好，但结论是一样的。'],['这件事最舒服的处理方式是保留','朋友不是退而求其次','如果能接受这个定位，这段关系本身是有价值的。但要先真的接受，而不是把它当成「暂时先这样，以后再说」。']],
+rk:'把他的礼貌当证据，反复试探，最后把一段还不错的朋友关系耗成尴尬。',
+ac:['用一个不含表白的问题测一次底：「你现在有喜欢的人吗」。他的回答方式——有没有回避、有没有反问你——会给你最后一块拼图。','把投入降回朋友的量级：约会的密度、深夜的聊天、专属的关心。这些超出朋友档位的东西，才是让你持续误判的燃料。','如果你要的是恋爱关系，别在这里耗。他没那个意思的前提下，你的时间比你的坚持值钱。'],
+v:[-0.047,0.296,-0.137,0.752,-0.986,-0.949,-0.288,-0.233,-0.111,0.541]},
+
+{k:'PAS',n:'没在看你型',f:'🚶',fr:[6,22],
+vc:'他没在看你。',
+vs:'你解读的那些信号，大部分是你的解读，不是他的动作。',
+vd:'十个维度全线偏低。他没有在释放任何东西。',
+win:'动作窗口 · 停止分析他的每一个动作，至少两周',
+nr:'你的作答里，主动、时间、好奇、投入全线低于平均，而且模糊信号也不高——这意味着连暧昧的素材都很少。这个组合下，结论其实很清楚。|心理学里管你现在的状态叫确认偏误（Nickerson, 1998）：当你希望一个结论成立，你会自动收集支持它的证据、忽略反对的证据。他点了一个赞，你记住了；他十天没找你，你的解释是「他在忙」。这两条信息在你心里不是等权的——这不是恋爱脑，是大脑的正常偏差。|所以这个测试的用处不是告诉你他怎么想——他没怎么想——是把你从单方面解读的循环里拉出来。你在分析的是一个不存在的对象。',
+ex:[['你分析的其实是你自己','他的每一个动作都被你加工过','把你最近三个月关于他的所有「信号」列出来，逐条标注：这是一个动作，还是一个解读。你会发现动作那一栏非常短。'],['他不是高冷，是没有注意力在你这','高冷的人会释放温差','真正在意但克制的人会有忽冷忽热、会有反常、会有克制不住的瞬间。你这边连温差都没有——说明不是克制，是没在看。'],['离开这个循环比离开他更急','循环本身在消耗你','每天分析一个不在看你的人，损耗的是你对自己的判断力。这种损耗比失恋更慢，也更难恢复。']],
+rk:'再用三个月解读他的沉默，把「他没在看你」读成「他在等一个时机」。',
+ac:['两周内停止一切关于他的分析：不回放聊天记录、不解读朋友圈、不问共同朋友。这不是赌气，是戒断。','把那段时间填进一件能看到进度的事。你的注意力需要一个新宿主，空着的话它还会回到他身上。','两周之后如果还想确认，做一次「零成本测试」：不发消息、不点赞、彻底安静，看他会不会注意到。不会的话，这个结论就闭合了。'],
+v:[-1.012,-0.956,-0.738,-0.818,-1.188,-0.756,-0.988,-0.538,-0.938,-0.902]}
+];
+
+// 二十道题
+var QS=[
+{q:'你们通常是谁先开启话题？',o:[
+['A','基本都是他先来',{ATT:3}],
+['B','我先的多，但他接得认真',{RSP:2}],
+['C','一半一半',{ATT:1}],
+['D','都是我先，我不找就没下文',{ATT:-3,act:2}],
+['E','一直是他在聊，我怕冷场才回',{}]]},
+
+{q:'你发消息给他，他一般多久回？',o:[
+['A','很快，忙也会先回一句「在忙」',{RSP:3}],
+['B','几小时内，回得认真',{RSP:2}],
+['C','忽快忽慢，慢的时候能晾一两天',{AMB:2,RSP:-1,hot:2}],
+['D','经常已读不回',{RSP:-3}],
+['E','他很少让我等，感觉一直在等我发',{RSP:2,EMO:1}]]},
+
+{q:'他记得你随口说过的小事吗？',o:[
+['A','记得，还会主动提',{CUR:3}],
+['B','大事记得，小事不一定',{CUR:1}],
+['C','我说过的话他转头就忘',{CUR:-3}],
+['D','记得，但我是不小心才发现的',{CUR:2,AMB:1}],
+['E','不确定他记没记',{CUR:-1}]]},
+
+{q:'他会单独约你出来吗？',o:[
+['A','会，而且提前几天就定好',{PRI:3,ATT:2}],
+['B','会，但都是临时起意',{PRI:1,AMB:1}],
+['C','从来没有单独约过',{PRI:-3,talk:2}],
+['D','约过一两次，后来没下文',{PRI:-2,AMB:1}],
+['E','单独的时候他会叫上别人',{PRI:-1,SNS:-1}]]},
+
+{q:'他跟你聊过「以后」吗？',o:[
+['A','说过以后带我去哪、一起干嘛',{FTR:3}],
+['B','提过一两次，没展开',{FTR:1}],
+['C','只聊当下，未来绝口不提',{FTR:-2}],
+['D','聊过以后，但那些里面没有我',{FTR:-3}],
+['E','说过「以后的事以后说」',{FTR:-1}]]},
+
+{q:'你提到别的男生，他什么反应？',o:[
+['A','会追问那是谁，语气明显变了',{JEL:3}],
+['B','开玩笑岔开，之后明显冷一阵',{JEL:2,EMO:1}],
+['C','没什么反应',{JEL:-2}],
+['D','还给我介绍别的男生',{JEL:-3}],
+['E','没有机会提到',{JEL:-1}]]},
+
+{q:'他情绪低落的时候，会找你说吗？',o:[
+['A','会，我是他最先找的人',{EMO:3}],
+['B','会，但通常是深夜才轮到我',{EMO:1,hot:1}],
+['C','从来不说他的事',{EMO:-3}],
+['D','我问他才会说',{EMO:-1}],
+['E','跟我说得比跟他兄弟还多',{EMO:3,AMB:1}]]},
+
+{q:'他为你花过明显的时间或精力吗？（绕路、跑腿、帮大忙）',o:[
+['A','有，不止一次，而且是主动的',{EFF:3}],
+['B','有过一次，挺用心',{EFF:2}],
+['C','帮过小忙，仅此而已',{EFF:0}],
+['D','我开口他才动，不开口就算了',{EFF:-2}],
+['E','他自己一团糟，顾不上我',{EFF:-1}]]},
+
+{q:'你们的关系，他朋友知道吗？',o:[
+['A','知道，他主动提过我',{SNS:3}],
+['B','应该知道，但他没正式说过',{SNS:1}],
+['C','他绝口不提，像藏着我',{SNS:-3,hot:1}],
+['D','不知道，我们没什么共同圈子',{SNS:-1}],
+['E','他朋友问过，他打岔过去了',{SNS:-2,AMB:1}]]},
+
+{q:'深夜找你聊天的频率？',o:[
+['A','经常，深夜的话题只跟我聊',{PRI:2,EMO:2}],
+['B','偶尔，聊完就睡',{EMO:1}],
+['C','深夜从来不找我',{PRI:-1,EMO:-1}],
+['D','深夜找我，白天消失',{AMB:3,hot:2,PRI:-2}],
+['E','白天晚上都聊，不分',{RSP:2}]]},
+
+{q:'你不发朋友圈也不说，他能发现你的情绪变化吗？',o:[
+['A','能，他比我自己还先发现',{CUR:2,EMO:2}],
+['B','我说了他才反应',{EMO:-1}],
+['C','完全注意不到',{CUR:-2,EMO:-2}],
+['D','注意到了也不问',{EMO:-1,AMB:1}],
+['E','会问，但问得很小心',{EMO:1,AMB:1}]]},
+
+{q:'他对你和对别的女生，有区别吗？',o:[
+['A','很明显，他朋友都看出来过',{JEL:2,SNS:2}],
+['B','我觉得有，但说不出具体哪里',{AMB:2}],
+['C','没区别，他对谁都挺好',{JEL:-2}],
+['D','有区别，但方向反了：他对我更冷淡',{JEL:-2,AMB:-1}],
+['E','他只对我毒舌，对别人都客气',{JEL:1,EMO:1}]]},
+
+{q:'如果你们一整周没联系，会怎么样？',o:[
+['A','他撑不过三天',{ATT:3,EMO:2}],
+['B','上次就这样，谁都没找谁',{ATT:-2,act:1}],
+['C','不会出现这种情况，天天都在聊',{PRI:2}],
+['D','他会隔几天冒个泡，说句无关痛痒的',{AMB:2,ATT:-1,hot:1}],
+['E','我会先受不了，他无所谓',{EMO:-2,ATT:-2}]]},
+
+{q:'他说过让你琢磨很久的半句话吗？',o:[
+['A','说过「要是你是我对象就好了」这类',{AMB:3,FTR:2,sig:2}],
+['B','说过「我配不上你」',{AMB:2}],
+['C','说过「我现在不想谈恋爱」',{AMB:1,FTR:-2,back:2}],
+['D','从来没有',{AMB:-2}],
+['E','说过「你挺好的」',{AMB:1}]]},
+
+{q:'你们出去这件事，一般是谁提的？',o:[
+['A','他',{ATT:3,PRI:1}],
+['B','我提，他答应',{ATT:-1,PRI:1}],
+['C','我提，他经常有事',{PRI:-2,ATT:-2,talk:1}],
+['D','没有一起出去过',{PRI:-3}],
+['E','他提过又临时取消',{PRI:-2,AMB:1,hot:1}]]},
+
+{q:'你生病或者出事的时候，他会？',o:[
+['A','第一时间问情况，非要确认我没事',{EMO:3,EFF:2}],
+['B','说句多喝热水',{EFF:-1,EMO:-1}],
+['C','他可能都不知道',{EMO:-2}],
+['D','知道了也没什么表示',{EMO:-2}],
+['E','跑来送过药或送过饭',{EFF:3,EMO:2}]]},
+
+{q:'你们认识多久，停在这一步多久了？',o:[
+['A','刚认识不久，还在升温',{raw:2}],
+['B','暧昧好几个月了，一直这样',{mid:2,AMB:1,hot:1}],
+['C','一年以上了，还是老样子',{mid:2,AMB:1}],
+['D','认识挺久，最近才走近',{try:2}],
+['E','我单方面认识他很久了',{raw:1,act:1}]]},
+
+{q:'你跟他表白过，或者明显暗示过吗？',o:[
+['A','明确说过，他绕开了',{back:2,AMB:1,ATT:-1}],
+['B','暗示过，他装傻',{back:1,AMB:2}],
+['C','说过，他说再看看',{AMB:1,mid:1}],
+['D','没有，我不敢',{raw:2,try:1}],
+['E','说过，他没拒绝也没答应',{AMB:2,back:2}]]},
+
+{q:'诚实一点：你为什么来测这个？',o:[
+['A','他太模糊了，我需要一个说法',{amb:1}],
+['B','我怕自作多情',{try:1,act:1}],
+['C','朋友都说他喜欢我，我不太信',{mid:1}],
+['D','我其实知道答案，只是想确认',{sig:1}],
+['E','我控制不住想分析他',{act:1}]]},
+
+{q:'最后一题：凭直觉，他喜欢你吗？',o:[
+['A','喜欢，而且很明显',{EMO:1,ATT:1}],
+['B','应该有一点点',{AMB:1}],
+['C','不喜欢，但我不想承认',{ATT:-1,EMO:-1}],
+['D','不知道，所以才来测',{}],
+['E','喜欢过，现在不确定',{AMB:1,ATT:-1}]]}
+];
+
+/* ============================================================
+   【以下为通用逻辑，换主题不用改】
+   ============================================================ */
+var N=QS.length, cur=0, ans=Array(N).fill(null), last=null;
+document.getElementById('ptot').textContent=N;
+
+function show(id){document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});document.getElementById(id).classList.add('on');window.scrollTo(0,0);}
+function startQ(){cur=0;ans=Array(N).fill(null);loadQ(0);show('p1');}
+function restart(){show('p0');}
+
+function loadQ(n){
+  document.getElementById('qnum').textContent='Q'+String(n+1).padStart(2,'0')+' / '+N;
+  document.getElementById('qtext').textContent=QS[n].q;
+  document.getElementById('pf').style.width=Math.round((n+1)/N*100)+'%';
+  document.getElementById('pnum').textContent=n+1;
+  document.getElementById('hint').textContent = n>=16
+    ? '⚡ 最后几题最扎心，别修饰，选真实反应'
+    : '👀 选第一反应，不要选「应该怎样」的那个答案';
+  var el=document.getElementById('opts');el.innerHTML='';
+  QS[n].o.forEach(function(o){
+    var b=document.createElement('button');
+    b.className='opt'+(ans[n]===o[0]?' sel':'');
+    b.dataset.v=o[0];
+    b.innerHTML='<span class="ol">'+o[0]+'</span><span>'+o[1]+'</span>';
+    b.onclick=function(){pick(o[0]);};
+    el.appendChild(b);
+  });
+  var bP=document.getElementById('bP');
+  bP.disabled=(n===0);bP.style.opacity=(n===0?'0.35':'1');
+  document.getElementById('bN').textContent=(n===N-1?'看结论 →':'下一页 →');
+}
+function pick(v){
+  ans[cur]=v;
+  document.querySelectorAll('.opt').forEach(function(b){b.classList.toggle('sel',b.dataset.v===v);});
+}
+function nextQ(){if(cur>=N-1){calc();return;}cur++;loadQ(cur);}
+function prevQ(){if(cur>0){cur--;loadQ(cur);}}
+
+// 标准化：把原始分转成 z 分，消除各维度量纲差异
+function toZ(uv){return uv.map(function(v,i){return (v-MEAN[i])/SD[i];});}
+// z 空间欧氏距离：越小越像
+function dist(a,b){var s=0;for(var i=0;i<a.length;i++){var d=a[i]-b[i];s+=d*d;}return Math.sqrt(s);}
+
+function calc(){
+  var uv=Array(10).fill(0),prs={raw:0,try:0,mid:0,sig:0},tpo={act:0,hot:0,talk:0,back:0};
+  QS.forEach(function(q,i){
+    if(!ans[i])return;
+    var o=q.o.find(function(x){return x[0]===ans[i];});
+    if(!o||!o[2])return;
+    Object.keys(o[2]).forEach(function(k){
+      var idx=DK.indexOf(k);
+      if(idx>=0)uv[idx]+=o[2][k];
+      else if(prs.hasOwnProperty(k))prs[k]+=o[2][k];
+      else if(tpo.hasOwnProperty(k))tpo[k]+=o[2][k];
+    });
+  });
+  // 返回得分最高的轴；全是 0 就返回 null，宁可不显示也不瞎猜
+  var top=function(o){var ks=Object.keys(o);var m=ks.reduce(function(a,b){return o[a]>=o[b]?a:b;});return o[m]>0?m:null;};
+  var prsK=top(prs), tpoK=top(tpo);
+  var zuv=toZ(uv);
+  var scored=TYPES.map(function(t){return {t:t,d:dist(zuv,t.v)+(PEN[t.k]||0)};});
+  scored.sort(function(a,b){return a.d-b.d;});
+  var win=scored[0].t, winD=dist(zuv,win.v);
+  var norm=Math.max(0,Math.min(1,1-winD/D0));
+  var fit=Math.round(win.fr[0]+(win.fr[1]-win.fr[0])*norm);
+  last={t:win,fit:fit,uv:uv,zuv:zuv,oth:scored.slice(1,5),prsK:prsK,tpoK:tpoK};
+  render(last);
+  show('p2');
+}
+
+function card(id,lbl,html,cls){
+  var el=document.getElementById(id);
+  el.className='card'+(cls?' '+cls:'');
+  el.innerHTML='<div class="cl">'+lbl+'</div><div class="ct">'+html+'</div>';
+}
+
+function render(R){
+  var T=R.t;
+  document.getElementById('rH').innerHTML=
+    '<div class="rf">'+T.f+'</div>'+
+    '<div class="rn">定音</div>'+
+    '<div class="vbig">'+T.vc+'</div>'+
+    '<div class="vtype">'+T.n+'</div>'+
+    '<div class="rvs">'+T.vs+'</div>'+
+    '<div class="rfit"><div class="rfitn">'+R.fit+'%</div><div class="rfitl">他喜欢你的概率</div></div>'+
+    '<div class="rwin">'+T.win+'</div>'+
+    '<div class="rvd">'+T.vd+'</div>';
+
+  card('rV','🎯 这个结论是怎么来的',T.nr.split('|').map(function(x){return '<p>'+x+'</p>';}).join(''));
+
+  var pos={YES:1,SML:1,WIN:1,AMB:1};
+  var xH='<div class="cl">📋 '+(pos[T.k]?'三件他没说但做了的事':'三件你必须先接受的事')+'</div>';
+  T.ex.forEach(function(e,i){
+    xH+='<div class="ei"'+(i===T.ex.length-1?' style="border:none;padding-bottom:0"':'')+'>'+
+        '<div class="ew">'+e[0]+'</div><div class="em">'+e[1]+'</div><div class="ey">'+e[2]+'</div></div>';
+  });
+  document.getElementById('rX').innerHTML=xH;
+
+  document.getElementById('rR').innerHTML='<div class="cl">⚠️ 你最可能栽在哪一步</div><div class="ct">'+T.rk+'</div>';
+
+  var dH='<div class="cl">📊 你的十维剖面 <span class="bdg">百分位</span></div>'+
+         '<div style="font-size:12.5px;line-height:1.6;color:#8f8794;margin:-4px 0 14px">50 是普通人，越靠右这一项越强</div>';
+  R.zuv.map(function(z,i){return{n:DN[i],z:z};}).sort(function(a,b){return b.z-a.z;}).slice(0,5).forEach(function(d){
+    // z 分转百分位：60 分位=普通人偏上，84=明显强
+    var p=Math.round(100/(1+Math.exp(-1.7*d.z)));
+    p=Math.max(3,Math.min(97,p));
+    dH+='<div class="bi"><div class="bn">'+d.n+'</div><div class="bk"><div class="bf" data-p="'+p+'"></div></div><div class="bv">'+p+'</div></div>';
+  });
+  document.getElementById('rD').innerHTML=dH;
+
+  var ax=[];
+  if(R.prsK)ax.push(['你现在的状态',PRSlb[R.prsK],PRStx[R.prsK]]);
+  if(R.tpoK)ax.push(['他最让你搞不懂的',TPOlb[R.tpoK],TPOtx[R.tpoK]]);
+  if(!ax.length){
+    document.getElementById('rM').style.display='none';
+  }else{
+    document.getElementById('rM').style.display='';
+    var mH='<div class="cl">🧭 '+(ax.length>1?'两条关键轴':'一个关键点')+'</div>';
+    ax.forEach(function(a,i){
+      mH+='<div class="ey"'+(i===ax.length-1?'':' style="margin-bottom:10px"')+'><b>'+a[0]+' · </b>'+a[1]+'　'+a[2]+'</div>';
+    });
+    document.getElementById('rM').innerHTML=mH;
+  }
+
+  var oH='<div class="cl">🔍 你也可能偏向这几种</div>';
+  var ds=R.oth.map(function(s){return s.d;});
+  var dmin=Math.min.apply(null,ds), dmax=Math.max.apply(null,ds);
+  R.oth.forEach(function(s){
+    var p=(dmax-dmin<0.01)?70:Math.max(10,Math.round(88-78*(s.d-dmin)/(dmax-dmin)));
+    oH+='<div class="bi"><div class="bn" style="width:86px">'+s.t.f+' '+s.t.n+'</div><div class="bk"><div class="bg" data-p="'+p+'"></div></div><div class="bv">'+p+'</div></div>';
+  });
+  document.getElementById('rO').innerHTML=oH;
+
+  var aH='<div class="cl">📌 接下来这么做</div>';
+  T.ac.forEach(function(a,i){
+    aH+='<div class="ti"><div class="tn">'+(i+1)+'</div><div>'+a+'</div></div>';
+  });
+  document.getElementById('rA').innerHTML=aH;
+
+  setTimeout(function(){
+    document.querySelectorAll('.bf,.bg').forEach(function(el){el.style.width=el.dataset.p+'%';});
+  },150);
+}
+
+function copyResult(){
+  if(!last)return;
+  var T=last.t;
+  var s='【'+CFG.brand+'】'+T.vc+'\n'+
+        '「'+T.n+'」他喜欢你的概率 '+last.fit+'%\n'+
+        T.vs+'\n'+
+        (last.prsK?'状态·'+PRSlb[last.prsK]:'')+(last.tpoK?'｜卡点·'+TPOlb[last.tpoK]:'');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(s).then(function(){alert('结论已复制，去粘贴吧');},function(){prompt('复制这段：',s);});
+  }else{ prompt('复制这段：',s); }
+}
+</script>
+</body>
+</html>
